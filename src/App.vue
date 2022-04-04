@@ -1,12 +1,28 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+  <section id="app">
+    <ModalWithCard v-show="isOpenModal" />
+    <PageHeader />
+    <router-view class="views" />
+    <PageFooter />
+  </section>
 </template>
+
+<script>
+import PageHeader from "@/components/PageHeader.vue";
+import PageFooter from "@/components/PageFooter.vue";
+import ModalWithCard from "@/components/ModalWithCard.vue";
+import { mapState } from "vuex";
+export default {
+  components: {
+    PageHeader,
+    PageFooter,
+    ModalWithCard,
+  },
+  computed: {
+    ...mapState(["isOpenModal"]),
+  },
+};
+</script>
 
 <style>
 #app {
@@ -14,19 +30,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  width: 100vw;
+  height: 100vh;
 }
-
-nav {
-  padding: 30px;
+a {
+  text-decoration: none;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.views {
+  margin-top: 200px;
+  margin-bottom: 100px;
 }
 </style>
