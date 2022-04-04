@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     openCard() {
-      console.log("open card");
       this.setCardData(this.itemData);
       this.setIsOpenModal();
     },
